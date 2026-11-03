@@ -1,0 +1,42 @@
+BRISA CHAT SIN BASE DE DATOS — GitHub Pages
+
+1. Crea un repositorio en GitHub y sube index.html a la raíz.
+2. En Settings > Pages selecciona Deploy from a branch > main > /(root).
+3. Abre la URL de GitHub Pages y elige apodo. La primera persona CREA una sala.
+4. Pulsa «Copiar enlace» y comparte la URL con ?s=... a otras personas.
+5. Mantén la pestaña del anfitrión abierta. Sin ella la sala deja de funcionar.
+6. Los demás ingresan con apodos. Los mensajes no se guardan en bases de datos.
+
+FUNCIONES
+- Mensajería P2P entre navegadores mediante PeerJS/WebRTC.
+- Fotos de una sola visualización lógica (una descarga a una persona).
+- Borrado de mensajes y fotos de la memoria de la sesión después de 10 minutos.
+- Modo claro y oscuro.
+- Diseño móvil y escritorio.
+
+LIMITACIONES IMPORTANTES
+- No hay base de datos ni persistencia: si se cierra o recarga el anfitrión,
+  la sala y la memoria desaparecen. Al volver a crear un chat se obtiene otro enlace.
+- Requiere Internet, la biblioteca PeerJS CDN y un servidor externo GRATUITO
+  para señalización de conexiones (PeerJS Cloud). Esto no es una base de datos.
+- En algunas redes empresariales o NAT restrictivos la conexión P2P puede fallar.
+- La eliminación a los 10 minutos funciona solamente en las instancias conectadas;
+  no puede retirar capturas, descargas, datos copiados o copias del dispositivo.
+- La foto de una vista la recibe solo el primer participante que la solicita,
+  pero no es posible impedir capturas de pantalla, archivos guardados ni modificación
+  deliberada del navegador. No es para información sensible.
+- Los participantes no verifican identidad ni tienen seguridad de mensajería
+  comparable a WhatsApp. El anfitrión mantiene las fotos en memoria antes de abrirse.
+- Salas pequeñas recomendadas, aproximadamente 2 a 6 personas.
+- El código usa un servicio de señalización público sujeto a disponibilidad.
+
+ARQUITECTURA
+- 100% estático en GitHub Pages (solo index.html).
+- PeerJS Cloud intercambia los datos necesarios para establecer conexiones WebRTC.
+- WebRTC transporta mensajes y fotos entre anfitrión y participantes.
+- El navegador del anfitrión retransmite mensajes al grupo y conserva solo
+  mensajes recientes y fotos no vistas en su memoria RAM.
+
+NOTA
+Este prototipo es una demostración técnica, no un servicio de comunicaciones
+anónimo ni de almacenamiento seguro.
